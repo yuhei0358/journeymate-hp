@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カラーパレット提案 10案 — JourneyMate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Hiragino Sans', sans-serif;
+      background: #F0F0EE;
+      padding: 40px 24px 80px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-title h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0D0D0D;
+      margin-bottom: 8px;
+    }
+    .page-title p {
+      font-size: 14px;
+      color: #6B6B6B;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 32px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .palette-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 3px solid transparent;
+    }
+    .palette-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+    }
+    .palette-card.selected {
+      border-color: #1A6B4A;
+    }
+
+    /* ── MOCKUP ─────────────────────────── */
+    .mockup {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    .m-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+    }
+    .m-nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .m-nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+    .m-nav-btn {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+
+    /* HERO */
+    .m-hero {
+      flex: 0 0 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .m-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .m-hero-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.65;
+    }
+    .m-hero-h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .m-hero-sub {
+      font-size: 11px;
+      line-height: 1.6;
+      opacity: 0.7;
+      margin-bottom: 18px;
+    }
+    .m-hero-btns {
+      display: flex;
+      gap: 10px;
+    }
+    .m-btn-primary {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .m-btn-ghost {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: transparent;
+      border: 1.5px solid currentColor;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      opacity: 0.75;
+    }
+
+    /* CONTENT */
+    .m-content {
+      flex: 1;
+      padding: 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .m-section-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .m-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .m-card {
+      border-radius: 8px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .m-card-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+    .m-card-title {
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .m-card-text {
+      font-size: 8px;
+      line-height: 1.5;
+      opacity: 0.65;
+    }
+
+    /* SWATCHES */
+    .swatches {
+      padding: 12px 20px;
+      border-top: 1px solid #E8E8E4;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: white;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .swatch-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.08);
+    }
+    .swatch-hex {
+      font-size: 8px;
+      color: #888;
+      font-weight: 500;
+    }
+
+    /* PALETTE LABEL */
+    .palette-label {
+      padding: 14px 20px;
+      background: white;
+      border-top: 1px solid #F0F0EE;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .palette-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      margin-right: 8px;
+    }
+    .palette-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0D0D0D;
+    }
+    .palette-select-btn {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1.5px solid #0D0D0D;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .palette-select-btn:hover,
+    .palette-card.selected .palette-select-btn {
+      background: #0D0D0D;
+      color: white;
+    }
+
+    /* SELECTED BADGE */
+    .selected-badge {
+      display: none;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #1A6B4A;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      z-index: 20;
+    }
+    .palette-card.selected .selected-badge { display: block; }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 13px;
+      color: #888;
+    }
+    .selected-summary {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0D0D0D;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      display: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-title">
+  <h1>カラーパレット提案 — 10案</h1>
+  <p>気に入ったデザインをクリックして選択してください</p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="footer-note">気に入ったデザインを選んで Claude に番号を伝えてください</div>
+<div class="selected-summary" id="summary"></div>
+
+<script>
+const palettes = [
+  {
+    num: 1,
+    name: "朱と蒼空",
+    hero: "#0A1525",
+    accent: "#CC2B2B",
+    accentText: "#FFFFFF",
+    sub: "#6BB8D4",
+    bg: "#FFFFFF",
+    cardBg: "#EFF8FC",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(10,21,37,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "SKY",
+  },
+  {
+    num: 2,
+    name: "江戸スカーレット",
+    hero: "#0D1F33",
+    accent: "#B22222",
+    accentText: "#FFFFFF",
+    sub: "#4A9CC7",
+    bg: "#F8F6F2",
+    cardBg: "#EEF6FC",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(13,31,51,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "CERULEAN",
+  },
+  {
+    num: 3,
+    name: "祭り（Festival）",
+    hero: "#0C2434",
+    accent: "#FF3B30",
+    accentText: "#FFFFFF",
+    sub: "#40B8D0",
+    bg: "#FFFFFF",
+    cardBg: "#E8F8FB",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(12,36,52,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "TURQUOISE",
+  },
+  {
+    num: 4,
+    name: "鳥居ブルー",
+    hero: "#1A3048",
+    accent: "#E84242",
+    accentText: "#FFFFFF",
+    sub: "#A8D8E8",
+    bg: "#FFFFFF",
+    cardBg: "#EAF6FB",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(26,48,72,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "POWDER BLUE",
+  },
+  {
+    num: 5,
+    name: "雷門ゴールド",
+    hero: "#0A1826",
+    accent: "#CC2200",
+    accentText: "#FFFFFF",
+    sub: "#D4943A",
+    bg: "#FAFAF8",
+    cardBg: "#FDF5E8",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(10,24,38,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "GOLD",
+    extra: "#5B9EC9",
+  },
+  {
+    num: 6,
+    name: "伝統朱",
+    hero: "#1C2E3D",
+    accent: "#CF3033",
+    accentText: "#FFFFFF",
+    sub: "#B3D9E8",
+    bg: "#F5F5F0",
+    cardBg: "#E8F4FA",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(28,46,61,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "ICE BLUE",
+  },
+  {
+    num: 7,
+    name: "夕焼けと空",
+    hero: "#0E2840",
+    accent: "#E8543A",
+    accentText: "#FFFFFF",
+    sub: "#3A8FC7",
+    bg: "#FEFEFE",
+    cardBg: "#EAF4FC",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(14,40,64,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "OCEAN BLUE",
+  },
+  {
+    num: 8,
+    name: "モダン京",
+    hero: "#152233",
+    accent: "#A82828",
+    accentText: "#FFFFFF",
+    sub: "#6A9FB5",
+    bg: "#F4F2EE",
+    cardBg: "#E8F2F7",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(21,34,51,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "STEEL BLUE",
+  },
+  {
+    num: 9,
+    name: "浅草モダン",
+    hero: "#071828",
+    accent: "#DC143C",
+    accentText: "#FFFFFF",
+    sub: "#87CEEB",
+    bg: "#FAFAFA",
+    cardBg: "#EAF6FC",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(7,24,40,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "SKY BLUE",
+  },
+  {
+    num: 10,
+    name: "紅白ネオ",
+    hero: "#05121E",
+    accent: "#E62020",
+    accentText: "#FFFFFF",
+    sub: "#00AADD",
+    bg: "#FFFFFF",
+    cardBg: "#E5F7FD",
+    text: "#FFFFFF",
+    bodyText: "#3D3D3D",
+    muted: "#8A8A8A",
+    navBg: "rgba(5,18,30,0.95)",
+    navText: "#FFFFFF",
+    subLabel: "ELECTRIC BLUE",
+  },
+];
+
+const grid = document.getElementById('grid');
+
+palettes.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'palette-card';
+  card.innerHTML = `
+    <div class="mockup">
+      <span class="selected-badge">✓ 選択中</span>
+
+      <!-- NAV -->
+      <nav class="m-nav" style="background:${p.navBg}; color:${p.navText};">
+        <div class="m-nav-logo" style="color:${p.accent};">JourneyMate</div>
+        <div class="m-nav-links" style="color:${p.navText};">
+          <span>ツアー</span><span>アプリ</span><span>ビジョン</span>
+        </div>
+        <button class="m-nav-btn" style="background:${p.accent}; color:${p.accentText};">
+          JP | EN
+        </button>
+      </nav>
+
+      <!-- HERO -->
+      <div class="m-hero" style="background:${p.hero}; color:${p.text};">
+        <div class="m-hero-label" style="color:${p.sub};">— JOURNEYMATE INC.</div>
+        <div class="m-hero-h1">九州から、<br>日本全国へ。</div>
+        <div class="m-hero-sub">Start in Kyushu,<br>Scale to All Japan.</div>
+        <div class="m-hero-btns">
+          <button class="m-btn-primary" style="background:${p.accent}; color:${p.accentText};">
+            ツアーを見る →
+          </button>
+          <button class="m-btn-ghost" style="color:${p.sub}; border-color:${p.sub};">
+            アプリを見る
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="m-content" style="background:${p.bg};">
+        <div class="m-section-label" style="color:${p.accent};">● 事業紹介 / OUR BUSINESS</div>
+        <div class="m-cards">
+          <div class="m-card" style="background:${p.cardBg};">
+            <div class="m-card-icon" style="background:${p.accent};"></div>
+            <div class="m-card-title" style="color:${p.bodyText};">ツアー & 体験</div>
+            <div class="m-card-text" style="color:${p.muted};">Tours & Experiences</div>
+          </div>
+          <div class="m-card" style="background:${p.cardBg};">
+            <div class="m-card-icon" style="background:${p.sub};"></div>
+            <div class="m-card-title" style="color:${p.bodyText};">九州GO</div>
+            <div class="m-card-text" style="color:${p.muted};">Kyushu GO App</div>
+          </div>
+          <div class="m-card" style="background:${p.cardBg}; opacity:0.6;">
+            <div class="m-card-icon" style="background:#D0D0D0;"></div>
+            <div class="m-card-title" style="color:${p.muted};">ゲストハウス</div>
+            <div class="m-card-text" style="color:${p.muted};">Coming Soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWATCHES -->
+    <div class="swatches" style="background:${p.bg};">
+      <div class="swatch">
+        <div class="swatch-dot" style="background:${p.hero};"></div>
+        <div class="swatch-hex">${p.hero}</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:${p.accent};"></div>
+        <div class="swatch-hex">${p.accent}</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-dot" style="background:${p.sub};"></div>
+        <div class="swatch-hex">${p.sub}</div>
+      </div>
+      ${p.extra ? `<div class="swatch"><div class="swatch-dot" style="background:${p.extra};"></div><div class="swatch-hex">${p.extra}</div></div>` : ''}
+      <div class="swatch">
+        <div class="swatch-dot" style="background:${p.bg}; border:1.5px solid #D0D0D0;"></div>
+        <div class="swatch-hex">${p.bg}</div>
+      </div>
+    </div>
+
+    <!-- LABEL -->
+    <div class="palette-label">
+      <div>
+        <span class="palette-num">No.${p.num}</span>
+        <span class="palette-name">${p.name}</span>
+      </div>
+      <button class="palette-select-btn" onclick="selectPalette(${p.num}, '${p.name}', this)">
+        このデザインを選ぶ
+      </button>
+    </div>
+  `;
+
+  card.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    selectPalette(p.num, p.name, card.querySelector('.palette-select-btn'));
+  });
+
+  grid.appendChild(card);
+});
+
+function selectPalette(num, name, btn) {
+  document.querySelectorAll('.palette-card').forEach(c => c.classList.remove('selected'));
+  btn.closest('.palette-card').classList.add('selected');
+
+  const summary = document.getElementById('summary');
+  summary.textContent = `✓ No.${num}「${name}」を選択中 — Claudeにこの番号を伝えてください`;
+  summary.style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  /* 和モダン Color Palette */
+  --color-sumi:           #1A1A1A;
+  --color-sumi-light:     #2D2D2D;
+  --color-ivory:          #F5F0E8;
+  --color-ivory-dark:     #EDE6D8;
+  --color-crimson:        #8B2500;
+  --color-crimson-hover:  #6E1D00;
+  --color-crimson-light:  #F5E6E0;
+  --color-gold:           #C4A265;
+  --color-gold-light:     #F5ECD8;
+  --color-indigo:         #1B3A5C;
+  --color-indigo-light:   #E8EDF3;
+  --color-green:          #2D5A3D;
+  --color-body:           #4A4A4A;
+  --color-muted:          #8A8A8A;
+  --color-border:         #E0D8CC;
+  --color-hero-dark:      #0F0F0F;
+  --color-sky:            #87CEEB;
+  --color-sky-deep:       #5BA4CF;
+  --color-sky-light:      #B8E2F8;
+  --color-sky-pale:       #E3F4FC;
+
+  /* Legacy aliases for components not yet updated */
+  --color-accent:         #8B2500;
+  --color-accent-hover:   #6E1D00;
+  --color-accent-light:   #F5E6E0;
+  --color-accent-muted:   #C4A265;
+  --color-ink:            #1A1A1A;
+  --color-surface:        #F5F0E8;
+
+  /* Typography */
+  --font-serif: var(--font-noto-serif-jp, 'Noto Serif JP'), 'Yu Mincho', serif;
+  --font-sans: var(--font-inter, 'Inter'), var(--font-noto-sans-jp, 'Noto Sans JP'), 'Hiragino Sans', sans-serif;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-30: 7.5rem;
+
+  /* Border Radius */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 9999px;
+
+  /* Easing */
+  --ease-out-expo:    cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F5F0E8;
+  color: #1A1A1A;
+}
+
+/* Selection */
+::selection {
+  background: #F5E6E0;
+  color: #8B2500;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #8B2500;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Japanese Typography ────────────────────────────────────── */
+:lang(ja),
+.ja {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* ── Utilities ─────────────────────────────────────────────── */
+.text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+.text-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+.text-h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+}
+
+.text-eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-crimson);
+}
+
+/* Sumi gradient for dark sections (legacy) */
+.bg-sumi-gradient {
+  background: linear-gradient(165deg, #6DB8D9 0%, #87CEEB 40%, #5BA4CF 100%);
+}
+
+/* Sky gradient for bright sections */
+.bg-sky-gradient {
+  background: linear-gradient(165deg, #7EC8E3 0%, #87CEEB 40%, #A8DAEF 100%);
+}
+
+/* Washi paper texture */
+.bg-washi {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Vertical writing for decorative Japanese text */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+/* Container */
+.container-site {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-site {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-site {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* ── Smooth scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
