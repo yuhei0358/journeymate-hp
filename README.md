@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JourneyMate HP
 
-## Getting Started
+JourneyMateの別HP実装。Next.js 16.1.6 / React 19.2.3。既存コード・Git履歴を維持して管理する。
 
-First, run the development server:
+## 入口
 
-```bash
+- [JourneyMate本体と運用資料](https://github.com/yuhei0358/journeymate)
+- [Instagram戦略](https://github.com/yuhei0358/journeymate/tree/main/docs/instagram)
+- [共同編集の手順](https://github.com/yuhei0358/journeymate/blob/main/docs/collaboration.md)
+
+## 開発
+
+```sh
+git clone https://github.com/yuhei0358/journeymate-hp.git
+cd journeymate-hp
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`http://localhost:3000` で表示。`npm run lint` で静的検査、`npm run build` でビルド。認証情報は環境ごとに設定する。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このリポジトリへのpushでInstagramやWordPressの内容は変わらない。公開サイトの反映は既存のデプロイ設定を別途確認する。
