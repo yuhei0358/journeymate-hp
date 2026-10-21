@@ -7,6 +7,7 @@ import ToursTeaser from "@/components/home/ToursTeaser";
 import KyushgoTeaser from "@/components/home/KyushgoTeaser";
 import TrustPartnersSection from "@/components/home/TrustPartnersSection";
 import FinalCtaSection from "@/components/home/FinalCtaSection";
+import ReviewsSection from "@/components/tours/ReviewsSection";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <WhyKyushuSection />
       <SnsDiscoverySection />
       <ToursTeaser />
+      <ReviewsSection />
       <KyushgoTeaser />
       <TrustPartnersSection />
       <FinalCtaSection />

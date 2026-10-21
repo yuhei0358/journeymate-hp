@@ -21,13 +21,13 @@ interface LangContextType {
 }
 
 const LangContext = createContext<LangContextType>({
-  lang: "ja",
+  lang: "en",
   setLang: () => {},
-  t: (obj) => obj.ja,
+  t: (obj) => obj.en,
 });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("ja");
+  const [lang, setLang] = useState<Lang>("en");
   const t = (obj: BilingualString) => obj[lang];
 
   return (

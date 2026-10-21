@@ -50,7 +50,7 @@ export const copy = {
       tour: {
         number: "01",
         title:  { ja: "プライベートツアー & 体験", en: "Private Tours & Experiences" } as BilingualString,
-        desc:   { ja: "プライベートツアー、少人数ガイドツアー、カスタム体験。あなただけの九州を、地元ガイドがご案内します。Airbnb ExperiencesとViatorで予約可能。直接予約なら最安値保証。", en: "Private tours, small-group guided tours, custom experiences. Your personal local guide shows you the real Kyushu. Available on Airbnb Experiences and Viator. Book direct for the best price." } as BilingualString,
+        desc:   { ja: "プライベートツアー、少人数ガイドツアー、カスタム体験。あなただけの九州を、地元ガイドがご案内します。ご予約はYuheiに直接どうぞ。", en: "Private tours, small-group guided tours, custom experiences. Your personal local guide shows you the real Kyushu. Book directly with Yuhei." } as BilingualString,
         link:   { ja: "ツアーを見る", en: "View Tours" } as BilingualString,
       },
       app: {
@@ -198,10 +198,10 @@ export const copy = {
       eyebrow:  { ja: "料金プラン", en: "PRICING" } as BilingualString,
       headline: { ja: "シンプルな料金体系。", en: "Simple, transparent pricing." } as BilingualString,
       steps: [
-        { phase: "Plan A", area: { ja: "旅程作成", en: "Itinerary Only" } as BilingualString, detail: { ja: "¥8,000〜 / カスタム旅程をPDFでお届け", en: "From ¥8,000 / Custom itinerary delivered as PDF" } as BilingualString, status: "current" as const },
-        { phase: "Plan B", area: { ja: "旅程+予約代行", en: "Plan + Bookings" } as BilingualString, detail: { ja: "¥15,000〜 / 旅程作成+レストラン・体験予約代行", en: "From ¥15,000 / Itinerary + restaurant & activity bookings" } as BilingualString, status: "current" as const },
-        { phase: "Plan C", area: { ja: "フルサポート", en: "Full Support" } as BilingualString, detail: { ja: "¥25,000〜 / 旅程+予約+旅中WhatsAppサポート", en: "From ¥25,000 / Itinerary + bookings + in-trip WhatsApp support" } as BilingualString, status: "current" as const },
-        { phase: "Plan D", area: { ja: "プレミアム", en: "Premium" } as BilingualString, detail: { ja: "¥50,000〜 / フルサポート+空港送迎+同行案内1日", en: "From ¥50,000 / Full support + airport transfer + 1-day guided tour" } as BilingualString, status: "next" as const },
+        { phase: "Plan A", area: { ja: "旅程作成", en: "Itinerary Only" } as BilingualString, detail: { ja: "$79 / カスタム旅程をPDFでお届け", en: "$79 / A day-by-day Kyushu plan as a PDF" } as BilingualString, status: "current" as const },
+        { phase: "Plan B", area: { ja: "旅程+アドバイス", en: "Plan + Tips" } as BilingualString, detail: { ja: "$149 / 旅程+レストラン候補と予約方法+30分ビデオ相談", en: "$149 / Plan + restaurant shortlist with how to book + 30-min video call" } as BilingualString, status: "current" as const },
+        { phase: "Plan C", area: { ja: "フルサポート", en: "Full Support" } as BilingualString, detail: { ja: "$249 / 上記+出発7日前から旅の終わりまでWhatsAppサポート", en: "$249 / All of the above + WhatsApp support from 7 days before until you leave Kyushu" } as BilingualString, status: "current" as const },
+        { phase: "Plan D", area: { ja: "プレミアム", en: "Premium" } as BilingualString, detail: { ja: "$499〜 / フルサポート+Yuheiの同行案内1日", en: "From $499 / Full support + one day guided by Yuhei" } as BilingualString, status: "next" as const },
       ],
     },
     download: {
