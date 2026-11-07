@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { copy } from "@/lib/copy";
+import { contactInfo, getTour } from "@/lib/tours";
 import SectionLabel from "@/components/ui/SectionLabel";
 import FadeIn from "@/components/ui/FadeIn";
 
@@ -27,12 +28,28 @@ export default function ContactForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>();
 
-  const onSubmit = async (_data: FormData) => {
-    // Simulate async submission
-    await new Promise((r) => setTimeout(r, 800));
+  // Prefill from /contact?tour=<slug>
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("tour");
+    const tour = slug ? getTour(slug) : undefined;
+    if (tour) {
+      setValue("type", "tour");
+      setValue(
+        "message",
+        `I'd like to book "${tour.title.en}".\nPreferred date:\nNumber of guests:\nWhere I'm staying / ship name:\n`
+      );
+    }
+  }, [setValue]);
+
+  // No backend yet: hand the message to the visitor's email app, addressed to JourneyMate.
+  const onSubmit = async (data: FormData) => {
+    const subject = `[JourneyMate] ${data.type} inquiry from ${data.name}`;
+    const body = `${data.message}\n\n— ${data.name} (${data.email})`;
+    window.location.assign(`mailto:${contactInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
     setSubmitted(true);
   };
 

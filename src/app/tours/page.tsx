@@ -3,11 +3,12 @@ import ToursHero from "@/components/tours/ToursHero";
 import ToursGrid from "@/components/tours/ToursGrid";
 import BookingBand from "@/components/tours/BookingBand";
 import TrustSection from "@/components/tours/TrustSection";
+import ReviewsSection from "@/components/tours/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "ツアー & 体験 | Tours & Experiences",
   description:
-    "九州の文化・自然・食を少人数でじっくりと体験。Airbnb ExperiencesとViatorで予約可能。Small-group guided tours in Kyushu.",
+    "Private tours in Fukuoka and Kyushu with local guide Yuhei: yatai food nights, Dazaifu & Yanagawa, Nagasaki, Yufuin & Beppu, and cruise shore days.",
 };
 
 export default function ToursPage() {
@@ -15,6 +16,7 @@ export default function ToursPage() {
     <>
       <ToursHero />
       <ToursGrid />
+      <ReviewsSection />
       <BookingBand />
       <TrustSection />
     </>
